@@ -1,0 +1,24 @@
+li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+li span.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+button {
+  margin-left: auto;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
