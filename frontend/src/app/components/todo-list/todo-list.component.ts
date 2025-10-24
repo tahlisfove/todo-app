@@ -39,7 +39,7 @@ export class TodoListComponent implements OnInit {
   updateTodo(todo: Todo) {
     this.todoService.updateTodo(todo).subscribe({
       next: updated => {
-        // Met à jour localement
+        // met à jour localement
         const index = this.todos.findIndex(t => t.id === updated.id);
         if (index !== -1) this.todos[index] = updated;
       },
@@ -49,12 +49,11 @@ export class TodoListComponent implements OnInit {
 
   deleteTodo(id?: number) {
     if (!id) return;
-    // Supprime visuellement
     this.todos = this.todos.filter(t => t.id !== id);
     this.filteredTodos = this.filteredTodos.filter(t => t.id !== id);
     this.saveOrder();
 
-    // Supprime côté backend
+    // supprime côté backend
     this.todoService.deleteTodo(id).subscribe({
       error: err => console.error('Erreur suppression back', err)
     });

@@ -1,5 +1,10 @@
-ul { list-style: none; padding: 0; }
+/* supprime les puces et les marges par défaut */
+ul {
+  list-style: none;
+  padding: 0;
+}
 
+/* style principal d’un élément */
 li.todo-item {
   display: flex;
   align-items: center;
@@ -12,6 +17,7 @@ li.todo-item {
   transition: background-color 0.3s, color 0.3s, opacity 0.2s ease;
 }
 
+/* pastille de priorité de chaque tâche */
 .priority-dot {
   display: inline-block;
   width: 10px;
@@ -19,10 +25,12 @@ li.todo-item {
   border-radius: 50%;
   margin-right: 8px;
 }
-.priority-dot.none { background-color: #aaa; }
+
+/* couleurs des pastilles selon la priorité */
+.priority-dot.none { background-color: #aaa; }  
 .priority-dot.low { background-color: #4caf50; }
 .priority-dot.medium { background-color: #ff9800; }
-.priority-dot.high { background-color: #f44336; }
+.priority-dot.high { background-color: #f44336; } 
 
 /* dark mode pastilles */
 :host-context(.dark-mode) .priority-dot.none { background-color: #888; }
@@ -30,9 +38,12 @@ li.todo-item {
 :host-context(.dark-mode) .priority-dot.medium { background-color: #ffb74d; }
 :host-context(.dark-mode) .priority-dot.high { background-color: #ef5350; }
 
-li.todo-item input[type="checkbox"] { margin-right: 10px; }
-li.todo-item span.completed { text-decoration: line-through; color: gray; }
+/* espacement entre la case à cocher et le texte */
+li.todo-item input[type="checkbox"] {
+  margin-right: 10px;
+}
 
+/* bouton de suppression d’une tâche */
 button.delete-btn {
   margin-left: auto;
   background-color: red;
@@ -43,18 +54,30 @@ button.delete-btn {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-button.delete-btn:hover { background-color: darkred; }
 
+/* effet au survol du bouton de suppression */
+button.delete-btn:hover {
+  background-color: darkred;
+}
+
+/* style des tâches en mode sombre */
 :host-context(.dark-mode) li.todo-item {
   background-color: #1e1e1e;
   color: #e0e0e0;
   box-shadow: 0 1px 3px rgba(255,255,255,0.05);
 }
-:host-context(.dark-mode) button.delete-btn { background-color: #ff4c4c; }
-:host-context(.dark-mode) button.delete-btn:hover { background-color: #ff6666; }
 
-.cdk-drag-preview { display: none !important; }
+/* bouton de suppression en mode sombre */
+:host-context(.dark-mode) button.delete-btn {
+  background-color: #ff4c4c;
+}
 
+/* effet au survol du bouton de suppression en mode sombre */
+:host-context(.dark-mode) button.delete-btn:hover {
+  background-color: #ff6666;
+}
+
+/* sélecteur de priorité dans chaque tâche */
 li.todo-item select {
   margin-left: 10px;
   border-radius: 4px;
@@ -65,10 +88,15 @@ li.todo-item select {
   color: #222;
   cursor: pointer;
 }
+
+/* sélecteur de priorité en mode sombre */
 :host-context(.dark-mode) li.todo-item select {
   background-color: #333;
   color: #e0e0e0;
   border: 1px solid #555;
 }
 
-
+/* empêche l’affichage de l’aperçu de l’élément déplacé (drag & drop) */
+.cdk-drag-preview {
+  display: none !important;
+}

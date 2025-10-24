@@ -39,9 +39,7 @@ public class TodoController {
     // mettre à jour un todo
     @PutMapping("/{id}")
     public Todo updateTodo(@PathVariable Long id, @RequestBody Todo todoDetails) {
-        Todo todo = todoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Todo not found with id " + id));
-
+        Todo todo = todoRepository.findById(id).orElseThrow(() -> new RuntimeException("Todo not found with id " + id));
         todo.setTitle(todoDetails.getTitle());
         todo.setCompleted(todoDetails.isCompleted());
         todo.setPriority(todoDetails.getPriority());

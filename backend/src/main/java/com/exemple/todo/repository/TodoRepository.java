@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Long> {
-    // Ici, on hérite de toutes les méthodes CRUD de JpaRepository
+    // on hérite de toutes les méthodes CRUD de JpaRepository
 }
