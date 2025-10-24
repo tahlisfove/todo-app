@@ -1,24 +1,61 @@
+/* liste des tâches */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* élément de tâche */
 li {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #222;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+/* texte barré pour les tâches complétées */
 li span.completed {
   text-decoration: line-through;
   color: gray;
 }
 
-button {
+/* bouton “supprimer” */
+button.delete-btn {
   margin-left: auto;
   background-color: red;
   color: white;
   border: none;
-  padding: 3px 8px;
+  padding: 5px 10px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.completed {
-  text-decoration: line-through;
-  color: gray;
+/* survol bouton “supprimer” */
+button.delete-btn:hover {
+  background-color: darkred;
+}
+
+/* 🌙 mode sombre appliqué via body.dark-mode */
+:host-context(.dark-mode) li {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05);
+}
+
+/* bouton supprimer en mode sombre */
+:host-context(.dark-mode) button.delete-btn {
+  background-color: #ff4c4c;
+}
+
+/* survol bouton supprimer en mode sombre */
+:host-context(.dark-mode) button.delete-btn:hover {
+  background-color: #ff6666;
+}
+
+/* case à cocher en mode sombre */
+:host-context(.dark-mode) input[type="checkbox"] {
+  accent-color: #00bcd4;
 }

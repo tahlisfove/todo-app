@@ -1,5 +1,12 @@
+/* fond clair par défaut */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+  background-color: #f9f9f9;
+  color: #222;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* fond sombre (activé par app.component.ts) */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
 }

@@ -1,3 +1,11 @@
 <h1>Ma Todo List</h1>
+
+<div class="header">
+  <button (click)="toggleDarkMode()" class="toggle-theme-btn">
+    {{ isDarkMode ? '☀️ Mode clair' : '🌙 Mode sombre' }}
+  </button>
+</div>
+
 <app-todo-form (todoAdded)="onTodoAdded($event)"></app-todo-form>
 <app-todo-list></app-todo-list>
+

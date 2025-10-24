@@ -2,6 +2,6 @@
   <li *ngFor="let todo of todos">
     <input type="checkbox" [(ngModel)]="todo.completed" (change)="updateTodo(todo)">
     {{ todo.title }}
-    <button (click)="deleteTodo(todo.id!)">Supprimer</button>
+    <button class="delete-btn" (click)="deleteTodo(todo.id!)">Supprimer</button>
   </li>
 </ul>

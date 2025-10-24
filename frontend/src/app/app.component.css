@@ -1,10 +1,43 @@
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
+/* titre de la page */
+h1 {
+  margin: 20px;
+  text-align: center;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
+/* bouton mode sombre / clair */
+.toggle-theme-btn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  background-color: #f0f0f0;
+  color: #222;
+  border: 1px solid #bbb;
+}
+
+/* survol bouton clair */
+.toggle-theme-btn:hover {
+  background-color: #ddd;
+}
+
+/* bouton en mode sombre */
+:host-context(.dark-mode) .toggle-theme-btn {
+  background-color: #333;
+  color: #f1f1f1;
+  border: 1px solid #666;
+}
+
+/* survol bouton sombre */
+:host-context(.dark-mode) .toggle-theme-btn:hover {
+  background-color: #555;
+}
+
+/* transition fluide pour tout */
+:host-context(.dark-mode) * {
+  transition: background-color 0.3s, color 0.3s;
 }
