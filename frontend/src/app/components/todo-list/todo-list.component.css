@@ -1,10 +1,5 @@
-/* liste des tâches */
-ul {
-  list-style: none;
-  padding: 0;
-}
+ul { list-style: none; padding: 0; }
 
-/* élément de tâche */
 li.todo-item {
   display: flex;
   align-items: center;
@@ -13,40 +8,31 @@ li.todo-item {
   border-radius: 6px;
   background-color: #fff;
   color: #222;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s, color 0.3s, transform 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: background-color 0.3s, color 0.3s, opacity 0.2s ease;
 }
 
-/* espace entre la checkbox et le texte */
-li.todo-item input[type="checkbox"] {
-  margin-right: 10px;
+.priority-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
 }
+.priority-dot.none { background-color: #aaa; }
+.priority-dot.low { background-color: #4caf50; }
+.priority-dot.medium { background-color: #ff9800; }
+.priority-dot.high { background-color: #f44336; }
 
-/* texte barré pour les tâches complétées */
-li.todo-item span.completed {
-  text-decoration: line-through;
-  color: gray;
-}
+/* dark mode pastilles */
+:host-context(.dark-mode) .priority-dot.none { background-color: #888; }
+:host-context(.dark-mode) .priority-dot.low { background-color: #66bb6a; }
+:host-context(.dark-mode) .priority-dot.medium { background-color: #ffb74d; }
+:host-context(.dark-mode) .priority-dot.high { background-color: #ef5350; }
 
-/* disparition avec fade-out */
-li.todo-item.ng-leave {
-  opacity: 0;
-  transform: translateX(-20px);
-}
+li.todo-item input[type="checkbox"] { margin-right: 10px; }
+li.todo-item span.completed { text-decoration: line-through; color: gray; }
 
-/* apparition avec fade-in */
-li.todo-item.ng-enter {
-  opacity: 0;
-  transform: translateX(20px);
-}
-
-li.todo-item.ng-enter-active {
-  opacity: 1;
-  transform: translateX(0);
-  transition: all 0.2s ease;
-}
-
-/* bouton “supprimer” */
 button.delete-btn {
   margin-left: auto;
   background-color: red;
@@ -57,35 +43,32 @@ button.delete-btn {
   cursor: pointer;
   transition: background-color 0.3s;
 }
+button.delete-btn:hover { background-color: darkred; }
 
-/* survol bouton “supprimer” */
-button.delete-btn:hover {
-  background-color: darkred;
-}
-
-/* 🌙 mode sombre appliqué via body.dark-mode */
 :host-context(.dark-mode) li.todo-item {
   background-color: #1e1e1e;
   color: #e0e0e0;
-  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 1px 3px rgba(255,255,255,0.05);
+}
+:host-context(.dark-mode) button.delete-btn { background-color: #ff4c4c; }
+:host-context(.dark-mode) button.delete-btn:hover { background-color: #ff6666; }
+
+.cdk-drag-preview { display: none !important; }
+
+li.todo-item select {
+  margin-left: 10px;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #222;
+  cursor: pointer;
+}
+:host-context(.dark-mode) li.todo-item select {
+  background-color: #333;
+  color: #e0e0e0;
+  border: 1px solid #555;
 }
 
-/* bouton supprimer en mode sombre */
-:host-context(.dark-mode) button.delete-btn {
-  background-color: #ff4c4c;
-}
 
-/* survol bouton supprimer en mode sombre */
-:host-context(.dark-mode) button.delete-btn:hover {
-  background-color: #ff6666;
-}
-
-/* case à cocher en mode sombre */
-:host-context(.dark-mode) input[type="checkbox"] {
-  accent-color: #00bcd4;
-}
-
-/* drag preview invisible */
-.cdk-drag-preview {
-  display: none !important;
-}

@@ -1,4 +1,19 @@
-<form (ngSubmit)="addTodo()">
-  <input [(ngModel)]="title" name="title" placeholder="Nouvelle tâche" required>
+<form (ngSubmit)="addTodo()" autocomplete="off">
+  <input
+    [(ngModel)]="title"
+    name="title"
+    placeholder="Nouvelle tâche"
+    required
+    autocomplete="off"
+  />
+
+  <!-- Sélecteur de priorité -->
+  <select [(ngModel)]="priority" name="priority">
+    <option value="none">Non importante</option>
+    <option value="low">Faible 🟢</option>
+    <option value="medium">Moyenne 🟠</option>
+    <option value="high">Urgente 🔴</option>
+  </select>
+
   <button class="add-btn" type="submit">Ajouter</button>
 </form>

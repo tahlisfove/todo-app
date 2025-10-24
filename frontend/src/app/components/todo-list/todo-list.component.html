@@ -1,12 +1,20 @@
 <ul cdkDropList (cdkDropListDropped)="drop($event)">
-  <li *ngFor="let todo of todos" cdkDrag class="todo-item">
+  <li *ngFor="let todo of filteredTodos" cdkDrag class="todo-item">
     <input type="checkbox" [(ngModel)]="todo.completed" (change)="updateTodo(todo)">
-    <span>{{ todo.title }}</span>
-    <button class="delete-btn" (click)="deleteTodo(todo.id!)">❌</button>
 
-    <!-- preview invisible pour éviter duplication -->
-    <ng-template cdkDragPreview>
-      <li style="display: none;"></li>
-    </ng-template>
+    <!-- pastille priorité -->
+    <span class="priority-dot" [ngClass]="todo.priority || 'none'"></span>
+
+    <span>{{ todo.title }}</span>
+
+    <!-- select de priorité -->
+    <select [(ngModel)]="todo.priority" (change)="updateTodo(todo)">
+      <option value="none">⚪ Non importante</option>
+      <option value="low">🟢 Faible</option>
+      <option value="medium">🟠 Moyenne</option>
+      <option value="high">🔴 Urgente</option>
+    </select>
+
+    <button class="delete-btn" (click)="deleteTodo(todo.id!)">❌</button>
   </li>
 </ul>

@@ -13,6 +13,7 @@ import { CdkDragDrop, moveItemInArray, DragDropModule } from '@angular/cdk/drag-
 })
 export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
+  filteredTodos: Todo[] = [];
 
   constructor(private todoService: TodoService) {}
 
@@ -31,22 +32,37 @@ export class TodoListComponent implements OnInit {
       } else {
         this.todos = todos;
       }
+      this.filteredTodos = [...this.todos];
     });
   }
 
   updateTodo(todo: Todo) {
-    this.todoService.updateTodo(todo).subscribe();
+    this.todoService.updateTodo(todo).subscribe({
+      next: updated => {
+        // Met à jour localement
+        const index = this.todos.findIndex(t => t.id === updated.id);
+        if (index !== -1) this.todos[index] = updated;
+      },
+      error: err => console.error('Erreur mise à jour', err)
+    });
   }
 
-  deleteTodo(id: number) {
-    this.todoService.deleteTodo(id).subscribe(() => {
-      this.todos = this.todos.filter(t => t.id !== id);
-      this.saveOrder();
+  deleteTodo(id?: number) {
+    if (!id) return;
+    // Supprime visuellement
+    this.todos = this.todos.filter(t => t.id !== id);
+    this.filteredTodos = this.filteredTodos.filter(t => t.id !== id);
+    this.saveOrder();
+
+    // Supprime côté backend
+    this.todoService.deleteTodo(id).subscribe({
+      error: err => console.error('Erreur suppression back', err)
     });
   }
 
   drop(event: CdkDragDrop<Todo[]>) {
     moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.filteredTodos, event.previousIndex, event.currentIndex);
     this.saveOrder();
   }
 

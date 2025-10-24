@@ -6,6 +6,7 @@ export interface Todo {
   id?: number;
   title: string;
   completed: boolean;
+  priority?: 'none' | 'low' | 'medium' | 'high';
 }
 
 @Injectable({

@@ -14,6 +14,7 @@ public class Todo {
 
     private String title;
     private boolean completed;
+    private String priority = "none";
 
     // getters et setters
     public Long getId() { return id; }
@@ -24,4 +25,7 @@ public class Todo {
 
     public boolean isCompleted() { return completed; }
     public void setCompleted(boolean completed) { this.completed = completed; }
+
+    public String getPriority() { return priority; }
+    public void setPriority(String priority) { this.priority = priority; }
 }

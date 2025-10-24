@@ -15,25 +15,28 @@ public class TodoController {
     @Autowired
     private TodoRepository todoRepository;
 
-    // 1. Récupérer tous les todos
+    // récupérer tous les todos
     @GetMapping
     public List<Todo> getAllTodos() {
         return todoRepository.findAll();
     }
 
-    // 2. Créer un nouveau todo
+    // créer un nouveau todo
     @PostMapping
     public Todo createTodo(@RequestBody Todo todo) {
+        if (todo.getPriority() == null) {
+            todo.setPriority("none");
+        }
         return todoRepository.save(todo);
     }
 
-    // 3. Récupérer un todo par son id
+    // récupérer un todo par son id
     @GetMapping("/{id}")
     public Optional<Todo> getTodoById(@PathVariable Long id) {
         return todoRepository.findById(id);
     }
 
-    // 4. Mettre à jour un todo
+    // mettre à jour un todo
     @PutMapping("/{id}")
     public Todo updateTodo(@PathVariable Long id, @RequestBody Todo todoDetails) {
         Todo todo = todoRepository.findById(id)
@@ -41,11 +44,12 @@ public class TodoController {
 
         todo.setTitle(todoDetails.getTitle());
         todo.setCompleted(todoDetails.isCompleted());
+        todo.setPriority(todoDetails.getPriority());
 
         return todoRepository.save(todo);
     }
 
-    // 5. Supprimer un todo
+    // supprimer un todo
     @DeleteMapping("/{id}")
     public void deleteTodo(@PathVariable Long id) {
         todoRepository.deleteById(id);
