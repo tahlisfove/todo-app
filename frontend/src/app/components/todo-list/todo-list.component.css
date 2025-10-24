@@ -59,3 +59,8 @@ button.delete-btn:hover {
 :host-context(.dark-mode) input[type="checkbox"] {
   accent-color: #00bcd4;
 }
+
+/* espace entre la checkbox et le texte */
+li input[type="checkbox"] {
+  margin-right: 10px;
+}
