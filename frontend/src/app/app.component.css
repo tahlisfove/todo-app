@@ -38,6 +38,6 @@ h1 {
 }
 
 /* transition fluide pour tout */
-:host-context(.dark-mode) * {
-  transition: background-color 0.3s, color 0.3s;
+* {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }

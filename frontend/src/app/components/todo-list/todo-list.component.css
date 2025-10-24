@@ -5,7 +5,7 @@ ul {
 }
 
 /* élément de tâche */
-li {
+li.todo-item {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -14,12 +14,36 @@ li {
   background-color: #fff;
   color: #222;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s, transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* espace entre la checkbox et le texte */
+li.todo-item input[type="checkbox"] {
+  margin-right: 10px;
 }
 
 /* texte barré pour les tâches complétées */
-li span.completed {
+li.todo-item span.completed {
   text-decoration: line-through;
   color: gray;
+}
+
+/* disparition avec fade-out */
+li.todo-item.ng-leave {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+/* apparition avec fade-in */
+li.todo-item.ng-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+li.todo-item.ng-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.2s ease;
 }
 
 /* bouton “supprimer” */
@@ -31,6 +55,7 @@ button.delete-btn {
   padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 /* survol bouton “supprimer” */
@@ -39,7 +64,7 @@ button.delete-btn:hover {
 }
 
 /* 🌙 mode sombre appliqué via body.dark-mode */
-:host-context(.dark-mode) li {
+:host-context(.dark-mode) li.todo-item {
   background-color: #1e1e1e;
   color: #e0e0e0;
   box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05);
@@ -60,7 +85,7 @@ button.delete-btn:hover {
   accent-color: #00bcd4;
 }
 
-/* espace entre la checkbox et le texte */
-li input[type="checkbox"] {
-  margin-right: 10px;
+/* drag preview invisible */
+.cdk-drag-preview {
+  display: none !important;
 }

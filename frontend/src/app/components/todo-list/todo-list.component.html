@@ -1,7 +1,12 @@
-<ul>
-  <li *ngFor="let todo of todos">
+<ul cdkDropList (cdkDropListDropped)="drop($event)">
+  <li *ngFor="let todo of todos" cdkDrag class="todo-item">
     <input type="checkbox" [(ngModel)]="todo.completed" (change)="updateTodo(todo)">
-    {{ todo.title }}
-    <button class="delete-btn" (click)="deleteTodo(todo.id!)">Supprimer</button>
+    <span>{{ todo.title }}</span>
+    <button class="delete-btn" (click)="deleteTodo(todo.id!)">❌</button>
+
+    <!-- preview invisible pour éviter duplication -->
+    <ng-template cdkDragPreview>
+      <li style="display: none;"></li>
+    </ng-template>
   </li>
 </ul>
