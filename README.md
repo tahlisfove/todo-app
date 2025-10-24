@@ -5,9 +5,9 @@ Une application de gestion de tâches (Todo List) développée avec Angular pour
 
 ## Fonctionnalités
 
-- Ajouter, modifier et supprimer des tâches
+- Ajouter et supprimer des tâches
 - Définir la priorité d'une tâche (non importante, faible, moyenne, urgente) avec pastilles colorées
-- Drag & drop pour réorganiser les tâches
+- Drag & drop pour réorganiser les tâches dans l'ordre shouaité
 - Mode sombre / clair
 - Stockage de l'ordre des tâches dans `localStorage`
 - Backend RESTful avec Spring Boot et PostgreSQL
