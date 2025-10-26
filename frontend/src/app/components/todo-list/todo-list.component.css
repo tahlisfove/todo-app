@@ -89,22 +89,76 @@ li.todo-item select {
   cursor: pointer;
 }
 
-/* sélecteur de priorité en mode sombre */
-:host-context(.dark-mode) li.todo-item select {
-  background-color: #333;
-  color: #e0e0e0;
-  border: 1px solid #555;
-}
-
 /* empêche l’affichage de l’aperçu de l’élément déplacé (drag & drop) */
 .cdk-drag-preview {
   display: none !important;
 }
 
-/* texte barré et grisé */
+/* texte barré et grisé pour tâches complétées */
 li.todo-item span.completed {
   text-decoration: line-through;
   color: gray;
   flex-grow: 1;
   transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* filtres et tri */
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* filtres et tri pour le texte du filtrage */
+.filters label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: #222;
+}
+
+/* dark mode pour la barre de filtre/tri */
+:host-context(.dark-mode) .filters label {
+  color: #e0e0e0;
+}
+
+/* fixe le select des filtres/tri en mode sombre */
+:host-context(.dark-mode) .filters select {
+  background-color: #333;
+  color: #e0e0e0;
+  border: 1px solid #555;
+}
+
+/* tous les selects du projet (tâches + filtre/tri + formulaire) */
+select {
+  background-color: #fff;
+  color: #222;
+  border: 1px solid #ccc;
+}
+
+/* mode sombre pour tous les selects */
+:host-context(.dark-mode) select {
+  background-color: #333;
+  color: #e0e0e0;
+  border: 1px solid #555;
+}
+
+/* select priorité dans les tâches */
+li.todo-item select {
+  margin-left: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #222;
+  cursor: pointer;
+}
+
+/* mode sombre pour select priorité */
+:host-context(.dark-mode) li.todo-item select {
+  background-color: #333;
+  color: #e0e0e0;
+  border: 1px solid #555;
 }

@@ -1,12 +1,37 @@
-<ul cdkDropList (cdkDropListDropped)="drop($event)">
-  <li *ngFor="let todo of filteredTodos" cdkDrag class="todo-item">
-    <input
-      type="checkbox"
-      [(ngModel)]="todo.completed"
-      (change)="updateTodo(todo)"
-    />
+<!-- filtres et tri -->
+<div class="filters">
+  <label>
+    Filtrer :
+    <select [(ngModel)]="filterPriority" (change)="onFilterChange()">
+      <option value="all">Toutes</option>
+      <option value="high">Urgentes 🔴</option>
+      <option value="medium">Moyennes 🟠</option>
+      <option value="low">Faibles 🟢</option>
+      <option value="none">Non importantes ⚪</option>
+    </select>
+  </label>
 
-    <!-- pastille et priorité visibles seulement si non complétée -->
+  <label>
+    Trier :
+    <select [(ngModel)]="sortOption" (change)="onFilterChange()">
+      <option value="priority">Priorité</option>
+      <option value="title">Ordre alphabétique</option>
+    </select>
+  </label>
+</div>
+
+<!-- liste des tâches -->
+<ul cdkDropList (cdkDropListDropped)="drop($event)">
+  <li *ngFor="let todo of filteredTodos"
+      cdkDrag
+      [cdkDragDisabled]="todo.completed"
+      class="todo-item">
+
+    <input type="checkbox"
+           [(ngModel)]="todo.completed"
+           (change)="updateTodo(todo)" />
+
+    <!-- si non complétée -->
     <ng-container *ngIf="!todo.completed">
       <span class="priority-dot" [ngClass]="todo.priority || 'none'"></span>
       <span>{{ todo.title }}</span>
@@ -19,7 +44,7 @@
       </select>
     </ng-container>
 
-    <!-- si tâche complétée -->
+    <!-- si complétée -->
     <ng-container *ngIf="todo.completed">
       <span class="completed">{{ todo.title }}</span>
     </ng-container>
