@@ -100,3 +100,11 @@ li.todo-item select {
 .cdk-drag-preview {
   display: none !important;
 }
+
+/* texte barré et grisé */
+li.todo-item span.completed {
+  text-decoration: line-through;
+  color: gray;
+  flex-grow: 1;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}

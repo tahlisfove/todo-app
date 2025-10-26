@@ -1,19 +1,28 @@
 <ul cdkDropList (cdkDropListDropped)="drop($event)">
   <li *ngFor="let todo of filteredTodos" cdkDrag class="todo-item">
-    <input type="checkbox" [(ngModel)]="todo.completed" (change)="updateTodo(todo)">
+    <input
+      type="checkbox"
+      [(ngModel)]="todo.completed"
+      (change)="updateTodo(todo)"
+    />
 
-    <!-- pastille priorité -->
-    <span class="priority-dot" [ngClass]="todo.priority || 'none'"></span>
+    <!-- pastille et priorité visibles seulement si non complétée -->
+    <ng-container *ngIf="!todo.completed">
+      <span class="priority-dot" [ngClass]="todo.priority || 'none'"></span>
+      <span>{{ todo.title }}</span>
 
-    <span>{{ todo.title }}</span>
+      <select [(ngModel)]="todo.priority" (change)="updateTodo(todo)">
+        <option value="none">⚪ Non importante</option>
+        <option value="low">🟢 Faible</option>
+        <option value="medium">🟠 Moyenne</option>
+        <option value="high">🔴 Urgente</option>
+      </select>
+    </ng-container>
 
-    <!-- select de priorité -->
-    <select [(ngModel)]="todo.priority" (change)="updateTodo(todo)">
-      <option value="none">⚪ Non importante</option>
-      <option value="low">🟢 Faible</option>
-      <option value="medium">🟠 Moyenne</option>
-      <option value="high">🔴 Urgente</option>
-    </select>
+    <!-- si tâche complétée -->
+    <ng-container *ngIf="todo.completed">
+      <span class="completed">{{ todo.title }}</span>
+    </ng-container>
 
     <button class="delete-btn" (click)="deleteTodo(todo.id!)">❌</button>
   </li>
