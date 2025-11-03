@@ -11,6 +11,7 @@ Une application de gestion de tâches (Todo List) développée avec Angular pour
 - Mode sombre / clair
 - Stockage de l'ordre des tâches dans `localStorage`
 - Backend RESTful avec Spring Boot et PostgreSQL
+- Filtrage des tâches par nom et priorités
 
 
 ## Prérequis
@@ -92,7 +93,14 @@ ng serve
 
 - L’ordre des tâches est sauvegardé dans `localStorage`
 - La priorité par défaut est “non importante” si elle n’est pas définie
-- Le drag & drop utilise Angular CDK
+
+
+## Améliorations
+
+- Gestion de temps des tâches (ajout deadlines, filtrage par temps...)
+- Barre de recherche des tâches par nom
+- Ajout de catégories pour les tâches (maison, travail...)
+- Description détaillé d'une tâche (détails sur les tâches)
 
 
 ## Endpoints REST exposés par le backend
